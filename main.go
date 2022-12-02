@@ -12,6 +12,7 @@ var runProfile bool
 
 var questionMap = map[int]func() []int{
 	1: answers.Day1,
+	2: answers.Day2,
 }
 
 func main() {
