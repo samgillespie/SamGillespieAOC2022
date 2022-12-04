@@ -1,7 +1,5 @@
 package answers
 
-import "fmt"
-
 func Day3() []int {
 	data := ReadInputAsStr(3)
 	return []int{q3part1(data), q3part2(data)}
@@ -61,7 +59,6 @@ func q3part2(data []string) int {
 		} else {
 			overlap := findAllOverlap(row1, row2)
 			solution := findAllOverlap(overlap, []byte(row))
-			fmt.Println(solution)
 			answer += byteToPriority(solution[0])
 			row1 = []byte{}
 			row2 = []byte{}
