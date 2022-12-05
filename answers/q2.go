@@ -1,8 +1,8 @@
 package answers
 
-func Day2() []int {
+func Day2() []interface{} {
 	data := ReadInputAsStr(2)
-	return []int{q2part1(data), q2part2(data)}
+	return []interface{}{q2part1(data), q2part2(data)}
 
 }
 

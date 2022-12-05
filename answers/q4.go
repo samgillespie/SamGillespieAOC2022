@@ -5,10 +5,10 @@ import (
 	"strings"
 )
 
-func Day4() []int {
+func Day4() []interface{} {
 	data := ReadInputAsStr(4)
 	elves := ParseElves(data)
-	return []int{q4part1(elves), q4part2(elves)}
+	return []interface{}{q4part1(elves), q4part2(elves)}
 }
 
 type Elf struct {

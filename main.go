@@ -10,19 +10,20 @@ import (
 var question int
 var runProfile bool
 
-var questionMap = map[int]func() []int{
+var questionMap = map[int]func() []interface{}{
 	1: answers.Day1,
 	2: answers.Day2,
 	3: answers.Day3,
 	4: answers.Day4,
+	5: answers.Day5,
 }
 
 func main() {
 	parseArgs()
 	if runProfile == false {
 		result := SolveQuestion()
-		fmt.Printf("Day %d Part 1 Answer : %d\n", question, result[0])
-		fmt.Printf("Day %d Part 2 Answer : %d\n", question, result[1])
+		fmt.Printf("Day %d Part 1 Answer : %v\n", question, result[0])
+		fmt.Printf("Day %d Part 2 Answer : %v\n", question, result[1])
 	} else {
 		runs := make([]time.Duration, 0, 1000)
 		for i := 0; i < 1000; i++ {
@@ -48,7 +49,7 @@ func main() {
 	}
 }
 
-func SolveQuestion() []int {
+func SolveQuestion() []interface{} {
 	if question == 0 {
 		times := []time.Duration{}
 		for i := 1; i <= len(questionMap); i++ {
@@ -56,7 +57,6 @@ func SolveQuestion() []int {
 			questionMap[i]()
 			end := time.Since(start)
 			times = append(times, end)
-
 			fmt.Printf("Day %d: Time Taken %s\n", i, end)
 		}
 		var totalDuration time.Duration
@@ -64,7 +64,7 @@ func SolveQuestion() []int {
 			totalDuration += dur
 		}
 		fmt.Printf("Total Time Taken: %s\n\n", totalDuration)
-		return []int{0, 0}
+		return []interface{}{0, 0}
 	} else {
 		return questionMap[question]()
 	}

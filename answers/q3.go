@@ -1,8 +1,8 @@
 package answers
 
-func Day3() []int {
+func Day3() []interface{} {
 	data := ReadInputAsStr(3)
-	return []int{q3part1(data), q3part2(data)}
+	return []interface{}{q3part1(data), q3part2(data)}
 }
 
 func findOverlap(a []byte, b []byte) byte {
