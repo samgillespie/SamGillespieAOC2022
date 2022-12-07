@@ -17,6 +17,7 @@ var questionMap = map[int]func() []interface{}{
 	4: answers.Day4,
 	5: answers.Day5,
 	6: answers.Day6,
+	7: answers.Day7,
 }
 
 func main() {
@@ -46,7 +47,7 @@ func main() {
 			total += runtime
 		}
 		avg := time.Duration(total.Nanoseconds() / int64(len(runs)))
-		fmt.Println("min:", min, "max:", max, "avg:", avg)
+		fmt.Println("min:", min, "max:", max, "avg:", avg, "total", total)
 	}
 }
 
