@@ -9,7 +9,6 @@ import (
 func Day10() []interface{} {
 	data := ReadInputAsStr(10)
 	return []interface{}{q10part1(data), q10part2(data)}
-
 }
 
 func q10part1(data []string) int {
@@ -49,12 +48,11 @@ func PrintMessage(data [][]rune) {
 	}
 }
 
-func q10part2(data []string) int {
+func q10part2(data []string) []string {
 	image := [][]rune{}
 	for i := 0; i < 6; i++ {
 		image = append(image, make([]rune, 40))
 	}
-	PrintMessage(image)
 	X := 1
 	cycle := 0
 	toAdd := 0
@@ -65,7 +63,6 @@ func q10part2(data []string) int {
 		if colPosition == 6 {
 			break
 		}
-		fmt.Println(rowPosition, colPosition, cycle, toAdd, cursor, X)
 		cycle++
 		if rowPosition >= X-1 && rowPosition <= X+1 {
 			image[colPosition][rowPosition] = '#'
@@ -88,6 +85,11 @@ func q10part2(data []string) int {
 		split := strings.Split(instruction, " ")
 		toAdd, _ = strconv.Atoi(split[1])
 	}
-	PrintMessage(image)
-	return 0
+	// PrintMessage(image)
+	result := []string{}
+	for _, row := range image {
+		result = append(result, string(row)+"\n")
+	}
+	result[0] = "\n " + result[0]
+	return result
 }
