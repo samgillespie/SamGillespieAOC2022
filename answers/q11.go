@@ -1,7 +1,6 @@
 package answers
 
 import (
-	"fmt"
 	"strconv"
 	"strings"
 )
@@ -164,10 +163,5 @@ func q11part2(monkeys []Monkey) int {
 			}
 		}
 	}
-	for _, monkey := range monkeys {
-		fmt.Println(monkey.num, monkey.counter)
-	}
 	return CalculateMonkeyBusiness(monkeys)
 }
-
-// Ok so the worry levels need to be constrained to the t
