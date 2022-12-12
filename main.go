@@ -22,6 +22,7 @@ var questionMap = map[int]func() []interface{}{
 	9:  answers.Day9,
 	10: answers.Day10,
 	11: answers.Day11,
+	12: answers.Day12,
 }
 
 func main() {
@@ -31,7 +32,6 @@ func main() {
 		fmt.Printf("Day %d Part 1 Answer : %v\n", QUESTION, result[0])
 		fmt.Printf("Day %d Part 2 Answer : %v\n", QUESTION, result[1])
 	} else {
-
 		for question := 1; question <= len(questionMap); question++ {
 			if question != QUESTION && QUESTION != 0 {
 				continue

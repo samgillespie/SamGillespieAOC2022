@@ -73,3 +73,12 @@ func minSlice(slice []int) (int, int) {
 	}
 	return pos, min
 }
+
+type Vector struct {
+	x int
+	y int
+}
+
+func (a Vector) Print() {
+	fmt.Printf("x: %d, y: %d \n", a.x, a.y)
+}
