@@ -84,8 +84,10 @@ func PrintCells(cells []*GridCell) {
 	}
 }
 
-func FindDistance(grid []*GridCell, start *GridCell) int {
+func FindDistance(grid []*GridCell, start *GridCell) (int, map[Vector]int) {
+	// returns either the distance, or all cells visited
 	visited := map[Vector]int{start.pos: 0}
+
 	walkerHeads := []*GridCell{start}
 	steps := 0
 	for len(walkerHeads) > 0 {
@@ -98,7 +100,7 @@ func FindDistance(grid []*GridCell, start *GridCell) int {
 					continue
 				}
 				if destination.target == true {
-					return steps + 1
+					return steps + 1, visited
 				}
 				nextStep = append(nextStep, destination)
 				visited[destination.pos] = steps + 1
@@ -107,24 +109,35 @@ func FindDistance(grid []*GridCell, start *GridCell) int {
 		walkerHeads = nextStep
 		steps++
 	}
-	return 999999
+	return 999999, visited
 }
 
 func q12part1(grid []*GridCell, start *GridCell) int {
 	// Walk the space
-	return FindDistance(grid, start)
+	dist, _ := FindDistance(grid, start)
+	return dist
 }
 
 func q12part2(grid []*GridCell) int {
-	startPoints := []*GridCell{}
+	startPoints := map[Vector]*GridCell{}
 	for _, cell := range grid {
 		if cell.height == 0 {
-			startPoints = append(startPoints, cell)
+			startPoints[cell.pos] = cell
 		}
 	}
 	min_val := 999999999
 	for _, start := range startPoints {
-		dist := FindDistance(grid, start)
+		dist, visited := FindDistance(grid, start)
+		// If we cannot reach the target, then remove all of visted from the valid start points
+		// Easily purge a bunch of useless start points
+		if dist == 999999 {
+			for cell := range visited {
+				_, present := startPoints[cell]
+				if present {
+					delete(startPoints, cell)
+				}
+			}
+		}
 		if dist < min_val {
 			min_val = dist
 		}
