@@ -23,6 +23,7 @@ var questionMap = map[int]func() []interface{}{
 	10: answers.Day10,
 	11: answers.Day11,
 	12: answers.Day12,
+	13: answers.Day13,
 }
 
 func main() {
@@ -36,8 +37,8 @@ func main() {
 			if question != QUESTION && QUESTION != 0 {
 				continue
 			}
-			runs := make([]time.Duration, 0, 1000)
-			for i := 0; i < 1000; i++ {
+			runs := make([]time.Duration, 0, 20)
+			for i := 0; i < 20; i++ {
 				start := time.Now()
 				SolveQuestion(true, question)
 				runs = append(runs, time.Since(start))
