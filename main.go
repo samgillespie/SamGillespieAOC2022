@@ -25,6 +25,7 @@ var questionMap = map[int]func() []interface{}{
 	12: answers.Day12,
 	13: answers.Day13,
 	14: answers.Day14,
+	15: answers.Day15,
 }
 
 func main() {

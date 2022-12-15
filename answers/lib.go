@@ -82,3 +82,12 @@ type Vector struct {
 func (a Vector) Print() {
 	fmt.Printf("x: %d, y: %d \n", a.x, a.y)
 }
+
+func IntInSlice(value int, slice []int) bool {
+	for _, i := range slice {
+		if value == i {
+			return true
+		}
+	}
+	return false
+}
