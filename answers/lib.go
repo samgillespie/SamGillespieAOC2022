@@ -78,14 +78,100 @@ type Vector struct {
 	x int
 	y int
 }
+type Vector2Bounds struct {
+	xmin int
+	xmax int
+	ymin int
+	ymax int
+}
 
 func (a Vector) Print() {
 	fmt.Printf("x: %d, y: %d \n", a.x, a.y)
 }
 
+type Vector3 struct {
+	x int
+	y int
+	z int
+}
+
+type Vector3Bounds struct {
+	xmin int
+	xmax int
+	ymin int
+	ymax int
+	zmin int
+	zmax int
+}
+
+func (v Vector3) Up(distance int) Vector3 {
+	return Vector3{x: v.x, y: v.y + distance, z: v.z}
+}
+
+func (v Vector3) Down(distance int) Vector3 {
+	return Vector3{x: v.x, y: v.y - distance, z: v.z}
+}
+
+func (v Vector3) Left(distance int) Vector3 {
+	return Vector3{x: v.x + distance, y: v.y, z: v.z}
+}
+
+func (v Vector3) Right(distance int) Vector3 {
+	return Vector3{x: v.x - distance, y: v.y, z: v.z}
+}
+
+func (v Vector3) Forward(distance int) Vector3 {
+	return Vector3{x: v.x, y: v.y, z: v.z + distance}
+}
+
+func (v Vector3) Back(distance int) Vector3 {
+	return Vector3{x: v.x, y: v.y, z: v.z - distance}
+}
+
+func (a Vector3) Print() {
+	fmt.Printf("x: %d, y: %d  z: %d\n", a.x, a.y, a.z)
+}
+
+func CalculateVector3Bounds(vectors []Vector3) Vector3Bounds {
+	var xmax, ymax, zmax int
+	xmin := 9999999
+	ymin := 9999999
+	zmin := 9999999
+	for _, vec := range vectors {
+		if vec.x < xmin {
+			xmin = vec.x
+		}
+		if vec.y < ymin {
+			ymin = vec.y
+		}
+		if vec.z < zmin {
+			zmin = vec.z
+		}
+		if vec.x > xmax {
+			xmax = vec.x
+		}
+		if vec.y > ymax {
+			ymax = vec.y
+		}
+		if vec.z > zmax {
+			zmax = vec.z
+		}
+	}
+	return Vector3Bounds{xmin, xmax, ymin, ymax, zmin, zmax}
+}
+
 func IntInSlice(value int, slice []int) bool {
 	for _, i := range slice {
 		if value == i {
+			return true
+		}
+	}
+	return false
+}
+
+func Vector3InSlice(vec Vector3, slice []Vector3) bool {
+	for _, i := range slice {
+		if vec.x == i.x && vec.y == i.y && vec.z == i.z {
 			return true
 		}
 	}
