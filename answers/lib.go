@@ -48,6 +48,13 @@ func abs(a int) int {
 	return a
 }
 
+func abs64(a int64) int64 {
+	if a < 0 {
+		return -a
+	}
+	return a
+}
+
 func maxSlice(slice []int) (int, int) {
 	// Returns position, value
 	max := -99999999999
