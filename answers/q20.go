@@ -175,16 +175,12 @@ func q20part2(data []int) int64 {
 				originNode = node
 			}
 		}
-		fmt.Println("ITERATION ", iter+1)
 	}
 
 	sum := int64(0)
 	for i := 0; i < 3; i++ {
-		fmt.Println(originNode.value)
 		originNode = originNode.Next(1000)
 		sum += originNode.value
 	}
-	fmt.Println(originNode.value)
-
 	return sum
 }
