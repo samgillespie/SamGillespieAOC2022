@@ -96,6 +96,10 @@ func (a Vector) Print() {
 	fmt.Printf("x: %d, y: %d \n", a.x, a.y)
 }
 
+func (a Vector) Add(b Vector) Vector {
+	return Vector{x: a.x + b.x, y: a.y + b.y}
+}
+
 type Vector3 struct {
 	x int
 	y int
