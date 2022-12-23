@@ -1,7 +1,6 @@
 package answers
 
 import (
-	"fmt"
 	"strconv"
 )
 
@@ -87,6 +86,10 @@ func (dl DirectionList) RotateLeft(direction Vector) Vector {
 	panic("Rotated out of existence")
 }
 
+func (dl DirectionList) GetElement(pos int) Vector {
+	return dl[pos%4]
+}
+
 func GetDirectionList() DirectionList {
 	return DirectionList{{x: 1, y: 0}, {x: 0, y: 1}, {x: -1, y: 0}, {x: 0, y: -1}}
 }
@@ -137,7 +140,6 @@ type MonkeyInstruction struct {
 }
 
 func q22part1(data []string) int {
-	return 0
 	monkeyMap, instructions, position := ParseMonkeyMap(data)
 	directionList := GetDirectionList()
 	currentDirection := directionList[0]
@@ -154,10 +156,10 @@ func q22part1(data []string) int {
 		for i := 0; i < instruction.distance; i++ {
 			newPosition, stopped := monkeyMap.Move(position, currentDirection)
 			if stopped == true {
-				fmt.Println("Hit a Wall")
+				// fmt.Println("Hit a Wall")
 				break
 			}
-			fmt.Println("Moved from position", position, " to ", newPosition)
+			// fmt.Println("Moved from position", position, " to ", newPosition)
 			position = newPosition
 		}
 	}

@@ -85,11 +85,35 @@ type Vector struct {
 	x int
 	y int
 }
-type Vector2Bounds struct {
+type VectorBounds struct {
 	xmin int
 	xmax int
 	ymin int
 	ymax int
+}
+
+func CalculateVectorBounds(vectors []Vector) VectorBounds {
+	var xmax, ymax int
+	xmin := 9999999
+	ymin := 9999999
+
+	for _, vec := range vectors {
+		if vec.x < xmin {
+			xmin = vec.x
+		}
+		if vec.y < ymin {
+			ymin = vec.y
+		}
+
+		if vec.x > xmax {
+			xmax = vec.x
+		}
+		if vec.y > ymax {
+			ymax = vec.y
+		}
+
+	}
+	return VectorBounds{xmin, xmax, ymin, ymax}
 }
 
 func (a Vector) Print() {
