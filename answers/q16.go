@@ -129,7 +129,6 @@ func q16part2(valves map[string]*Valve) int {
 	}
 
 	// Now find all possible combinations of two paths
-	fmt.Println(len(allSolutions))
 	best := 0
 	for i, step1 := range allSolutions {
 		for j, step2 := range allSolutions {

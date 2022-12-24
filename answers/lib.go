@@ -124,6 +124,10 @@ func (a Vector) Add(b Vector) Vector {
 	return Vector{x: a.x + b.x, y: a.y + b.y}
 }
 
+func (a Vector) Equals(b *Vector) bool {
+	return a.x == b.x && a.y == b.y
+}
+
 type Vector3 struct {
 	x int
 	y int

@@ -34,12 +34,14 @@ var questionMap = map[int]func() []interface{}{
 	21: answers.Day21,
 	22: answers.Day22,
 	23: answers.Day23,
+	24: answers.Day24,
+	25: answers.Day25,
 }
 
 func main() {
 	parseArgs()
 	if runProfile == false {
-		result := SolveQuestion(true, QUESTION)
+		result := SolveQuestion(false, QUESTION)
 		fmt.Printf("Day %d Part 1 Answer : %v\n", QUESTION, result[0])
 		fmt.Printf("Day %d Part 2 Answer : %v\n", QUESTION, result[1])
 	} else {
